@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        //网络请求放到P层
         OkGo.get(MOCO_URL)     // 请求方式和请求url
                 .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
