@@ -56,12 +56,12 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder = mViewHolderCallback.initViewHolder(convertView);
+            mBaseViewHolder = mViewHolderCallback.initView(convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
             mBaseViewHolder = (H)convertView.getTag();
         }
-        mViewHolderCallback.bindDataToItemView(mBaseViewHolder,position);
+        mViewHolderCallback.bindView(mBaseViewHolder,position);
         return convertView;
     }
 
@@ -70,12 +70,12 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
         /** 用于初始化ViewHolder
          * @param convertView
          */
-        IBaseViewHolder initViewHolder(@NonNull View convertView);
+        IBaseViewHolder initView(@NonNull View convertView);
 
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToItemView(IBaseViewHolder baseViewHolder,int position);
+       void bindView(IBaseViewHolder baseViewHolder,int position);
     }
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);
