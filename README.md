@@ -1,6 +1,25 @@
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
 
+
+使用方法：
+1、自定义viewholder,这一步跟你用传统的方式是一样的，里面封装了item控件的引用；
+
+但是，要实现 CommonAdapter.IBaseViewHolder 接口。
+
+2、给AdapterView(如 ListView)配置 CommonAdapter 时，要传递两个泛型参数 （MocoViewHolder） 该参数实现了IBaseViewHolder接口。
+
+一个是给 CommonAdapter 用；
+一个是给  CommonAdapter 的内部回调接口 ViewHolderCallback 。
+
+    mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {...}
+
+3、initView(View convertView)实例化控件
+
+ bindView(MocoViewHolder viewHolder, int position)将数据绑定到视图
+
+示例代码：
+
     import android.content.Context;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
