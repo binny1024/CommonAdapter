@@ -5,7 +5,6 @@
     import android.support.v7.app.AppCompatActivity;
     import android.view.View;
     import android.widget.ListView;
-
     import com.adapter.smart.base.CommonAdapter;
     import com.adapter.smart.bean.MocoBean;
     import com.adapter.smart.utils.UtilImageloader;
@@ -15,13 +14,10 @@
     import com.lzy.okgo.OkGo;
     import com.lzy.okgo.cache.CacheMode;
     import com.lzy.okgo.callback.StringCallback;
-
     import java.util.ArrayList;
     import java.util.List;
-
     import okhttp3.Call;
     import okhttp3.Response;
-
     import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
 
     public class MainActivity extends AppCompatActivity {

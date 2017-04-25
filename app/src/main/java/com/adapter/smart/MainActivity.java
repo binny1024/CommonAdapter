@@ -82,11 +82,18 @@ public class MainActivity extends AppCompatActivity {
             public CommonAdapter.IBaseViewHolder initView(View convertView) {
                 mMocoViewHolder = new MocoViewHolder();
 
+                /*
+                * 常规方法得到控件
+                * */
+
 //                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
 //                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
 //                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
 //                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
 
+                /*
+                * 通过泛型方法得到控件
+                * */
                 mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
                 mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
                 mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
