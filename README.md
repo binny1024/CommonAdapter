@@ -1,35 +1,36 @@
-# CommonAdapter
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
+    package com.adapter.smart;
 
-        import android.content.Context;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.ImageView;
-        import android.widget.ListView;
-        import android.widget.TextView;
-        import com.adapter.smart.base.CommonAdapter;
-        import com.adapter.smart.base.IBaseViewHolder;
-        import com.adapter.smart.bean.MocoBean;
-        import com.adapter.smart.utils.UtilImageloader;
-        import com.adapter.smart.viewholder.MocoViewHolder;
-        import com.google.gson.Gson;
-        import com.google.gson.reflect.TypeToken;
-        import com.lzy.okgo.OkGo;
-        import com.lzy.okgo.cache.CacheMode;
-        import com.lzy.okgo.callback.StringCallback;
-        import java.util.ArrayList;
-        import java.util.List;
-        import okhttp3.Call;
-        import okhttp3.Response;
-        import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
-        public class MainActivity extends AppCompatActivity {
-        private ListView mListView;//可以换成GrifView
+    import android.content.Context;
+    import android.os.Bundle;
+    import android.support.v7.app.AppCompatActivity;
+    import android.view.View;
+    import android.widget.ListView;
+
+    import com.adapter.smart.base.CommonAdapter;
+    import com.adapter.smart.bean.MocoBean;
+    import com.adapter.smart.utils.UtilImageloader;
+    import com.adapter.smart.viewholder.MocoViewHolder;
+    import com.google.gson.Gson;
+    import com.google.gson.reflect.TypeToken;
+    import com.lzy.okgo.OkGo;
+    import com.lzy.okgo.cache.CacheMode;
+    import com.lzy.okgo.callback.StringCallback;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    import okhttp3.Call;
+    import okhttp3.Response;
+
+    import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
+
+    public class MainActivity extends AppCompatActivity {
+
+        private ListView mListView;
         private MocoBean mMocoBean;
         private Context mContext;
         private List<MocoBean.DataList> mDataBeanList;
-        private MocoViewHolder mMocoViewHolder;//必须实现 CommonAdapter 提供的IBaseViewHolder接口
+        private MocoViewHolder mMocoViewHolder;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -47,21 +48,21 @@
                     .execute(new StringCallback() {
                         @Override
                         public void onSuccess(String s, Call call, Response response) {
-        //                        Log.i("xxx", "onSuccess: "+s);
-                                Gson gson = new Gson();
-                                mMocoBean = new MocoBean();
-                                mMocoBean = gson.fromJson(s, new TypeToken<MocoBean>(){
-                                }.getType());
+    //                        Log.i("xxx", "onSuccess: "+s);
+                            Gson gson = new Gson();
+                            mMocoBean = new MocoBean();
+                            mMocoBean = gson.fromJson(s, new TypeToken<MocoBean>(){
+                            }.getType());
 
-                                if (mMocoBean != null) {
-                                    //传统的写法
-        //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-                                    //封装后的写法,为了方便对比，提了出来
-                                    setAdapterView(mMocoBean);
-                                }
+                            if (mMocoBean != null) {
+                                //传统的写法
+    //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
+                                //封装后的写法,为了方便对比，提了出来
+                                setAdapterView(mMocoBean);
                             }
-                        });
-            }
+                        }
+                    });
+        }
 
         private void setAdapterView(MocoBean mocoBean) {
 
@@ -71,38 +72,37 @@
             for (int i = 0; i < size; i++) {
                 mDataBeanList.add(mMocoBean.getData().get(i));
             }
+                /*
+                * CommonAdapter：改参数实现了IBaseViewHolder接口
+                * CommonAdapter的第三个接口也接受同样的参数，而且与CommonAdapter的泛型参数是同一类型
+                * */
 
-            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
+            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
                 @Override
-                public IBaseViewHolder initView(View convertView) {
-
-                //这里面，只需要实例化你的控件，；类似于你在Activity的onCreate里初始化控件一样
-                //此处，还可以为每一个item设置事件监听
+                public CommonAdapter.IBaseViewHolder initView(View convertView) {
                     mMocoViewHolder = new MocoViewHolder();
 
                     mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
                     mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
                     mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
                     mMocoViewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
+
                     return mMocoViewHolder;
                 }
 
                 @Override
-                public void bindView(IBaseViewHolder baseViewHolder, int position) {
-
-                //在这个回调函数来为你的控件设置数据，类似于你在onCreate初始化后的，为控件赋值的操作
-
-                    mMocoViewHolder = (MocoViewHolder) baseViewHolder;//这一句是必须的，你要从这里拿出复用的控件，是复用的关键
-                    mMocoViewHolder.name.setText(mDataBeanList.get(position).getName());
-                    mMocoViewHolder.description.setText(mDataBeanList.get(position).getDescription());
-                    mMocoViewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
-                    //使用的Glide来加载图片
-                    UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),mMocoViewHolder.picSmall);
+                public void bindView(MocoViewHolder viewHolder, int position) {
+                    viewHolder.name.setText(mDataBeanList.get(position).getName());
+                    viewHolder.description.setText(mDataBeanList.get(position).getDescription());
+                    viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
+                    UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
                 }
+
             }));
         }
 
         private void initView() {
             mListView = (ListView) findViewById(R.id.id_listview);
         }
+
     }
