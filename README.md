@@ -1,4 +1,5 @@
-    package com.adapter.smart;
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
 
     import android.content.Context;
     import android.os.Bundle;
