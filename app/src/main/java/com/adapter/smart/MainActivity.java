@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
             @Override
-            public CommonAdapter.IBaseViewHolder initViewHolder(View convertView) {
+            public CommonAdapter.IBaseViewHolder initView(View convertView) {
                 mMocoViewHolder = new MocoViewHolder();
 
 //                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void bindDataToItemView(CommonAdapter.IBaseViewHolder baseViewHolder, int position) {
+            public void bindView(CommonAdapter.IBaseViewHolder baseViewHolder, int position) {
 
                 mMocoViewHolder = (MocoViewHolder) baseViewHolder;//这一句是必须的，你要从这里拿出复用的控件，是复用的关键
 
