@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             mDataBeanList.add(mMocoBean.getData().get(i));
         }
 
+        /*
+        * CommonAdapter：改参数实现了IBaseViewHolder接口
+        * CommonAdapter的第三个接口也接受同样的参数，而且与CommonAdapter的泛型参数是同一类型
+        * */
         mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
             @Override
             public CommonAdapter.IBaseViewHolder initView(View convertView) {

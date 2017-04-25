@@ -16,7 +16,7 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
+public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     private List<MocoBean.DataList> mDataList;
     protected Context mContext;
@@ -24,7 +24,6 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
     private int mDataListSize;
     private ViewHolderCallback mViewHolderCallback;
 
-    private H mH;
     /**
      * @param context 上下文
      * @param dataListSize 数据集（大小）
@@ -60,7 +59,7 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
             mBaseViewHolder = mViewHolderCallback.initView(convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
-            mBaseViewHolder = (H)convertView.getTag();
+            mBaseViewHolder = (T)convertView.getTag();
         }
         mViewHolderCallback.bindView(mBaseViewHolder,position);
         return convertView;
