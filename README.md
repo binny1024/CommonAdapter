@@ -74,7 +74,7 @@
 
             mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
                 @Override
-                public IBaseViewHolder initViewHolder(View convertView) {
+                public IBaseViewHolder initView(View convertView) {
 
                 //这里面，只需要实例化你的控件，；类似于你在Activity的onCreate里初始化控件一样
                 //此处，还可以为每一个item设置事件监听
@@ -88,7 +88,7 @@
                 }
 
                 @Override
-                public void bindDataToItemView(IBaseViewHolder baseViewHolder, int position) {
+                public void bindView(IBaseViewHolder baseViewHolder, int position) {
 
                 //在这个回调函数来为你的控件设置数据，类似于你在onCreate初始化后的，为控件赋值的操作
 
