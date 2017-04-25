@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             mDataBeanList.add(mMocoBean.getData().get(i));
         }
 
-        mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
+        mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
             @Override
             public CommonAdapter.IBaseViewHolder initView(View convertView) {
                 mMocoViewHolder = new MocoViewHolder();
@@ -92,15 +92,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void bindView(CommonAdapter.IBaseViewHolder baseViewHolder, int position) {
-
-                mMocoViewHolder = (MocoViewHolder) baseViewHolder;//这一句是必须的，你要从这里拿出复用的控件，是复用的关键
-
-                mMocoViewHolder.name.setText(mDataBeanList.get(position).getName());
-                mMocoViewHolder.description.setText(mDataBeanList.get(position).getDescription());
-                mMocoViewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
-                UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),mMocoViewHolder.picSmall);
+            public void bindView(MocoViewHolder viewHolder, int position) {
+                viewHolder.name.setText(mDataBeanList.get(position).getName());
+                viewHolder.description.setText(mDataBeanList.get(position).getDescription());
+                viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
+                UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
             }
+
         }));
     }
 

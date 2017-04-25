@@ -24,6 +24,7 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
     private int mDataListSize;
     private ViewHolderCallback mViewHolderCallback;
 
+    private H mH;
     /**
      * @param context 上下文
      * @param dataListSize 数据集（大小）
@@ -66,7 +67,7 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
     }
 
 
-    public interface ViewHolderCallback{
+    public interface ViewHolderCallback<BVH extends IBaseViewHolder>{
         /** 用于初始化ViewHolder
          * @param convertView
          */
@@ -75,7 +76,7 @@ public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends Bas
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindView(IBaseViewHolder baseViewHolder,int position);
+       void bindView(BVH viewHolder,int position);
     }
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);
