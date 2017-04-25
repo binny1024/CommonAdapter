@@ -16,7 +16,7 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<H extends IBaseViewHolder>  extends BaseAdapter{
+public class CommonAdapter<H extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     private List<MocoBean.DataList> mDataList;
     protected Context mContext;
@@ -56,7 +56,8 @@ public class CommonAdapter<H extends IBaseViewHolder>  extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            convertView.setTag(mViewHolderCallback.initViewHolder(convertView));
+            mBaseViewHolder = mViewHolderCallback.initViewHolder(convertView);
+            convertView.setTag(mBaseViewHolder);
         }else {
             mBaseViewHolder = (H)convertView.getTag();
         }
@@ -79,5 +80,10 @@ public class CommonAdapter<H extends IBaseViewHolder>  extends BaseAdapter{
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);
     }
+    /*
+    * 你所写的viewholder要继承这个BaseViewHolder
+    * */
+    public interface IBaseViewHolder {
 
+    }
 }

@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.adapter.smart.base.CommonAdapter;
-import com.adapter.smart.base.IBaseViewHolder;
 import com.adapter.smart.bean.MocoBean;
 import com.adapter.smart.utils.UtilImageloader;
 import com.adapter.smart.viewholder.MocoViewHolder;
@@ -60,41 +59,42 @@ public class MainActivity extends AppCompatActivity {
                         if (mMocoBean != null) {
                             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-
-                            int size = mMocoBean.getData().size();
-
-                            for (int i = 0; i < size; i++) {
-                                mDataBeanList.add(mMocoBean.getData().get(i));
-                            }
-                            //封装后的写法
-                            mDataBeanList = new ArrayList<>();
-                            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
-                                @Override
-                                public IBaseViewHolder initViewHolder(View convertView) {
-                                    mMocoViewHolder = new MocoViewHolder();
-                                    mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
-                                    mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
-                                    mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
-                                    mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
-                                    convertView.setTag(mMocoViewHolder);
-                                    return mMocoViewHolder;
-                                }
-
-                                @Override
-                                public void bindDataToItemView(IBaseViewHolder baseViewHolder, int position) {
-                                    if (baseViewHolder != null) {
-                                        mMocoViewHolder = (MocoViewHolder) baseViewHolder;
-                                    }
-                                    mMocoViewHolder.name.setText(mDataBeanList.get(position).getName());
-                                    mMocoViewHolder.description.setText(mDataBeanList.get(position).getDescription());
-                                    mMocoViewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
-                                    UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),mMocoViewHolder.picSmall);
-                                }
-                            }));
-//                            mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
+                            //封装后的写法,为了方便对比，提了出来
+                            setAdapterView(mMocoBean);
                         }
                     }
                 });
+    }
+
+    private void setAdapterView(MocoBean mocoBean) {
+
+        int size = mMocoBean.getData().size();
+        //封装后的写法
+        mDataBeanList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            mDataBeanList.add(mMocoBean.getData().get(i));
+        }
+
+        mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
+            @Override
+            public CommonAdapter.IBaseViewHolder initViewHolder(View convertView) {
+                mMocoViewHolder = new MocoViewHolder();//初始化的时候，只会
+                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
+                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
+                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
+                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+                return mMocoViewHolder;
+            }
+
+            @Override
+            public void bindDataToItemView(CommonAdapter.IBaseViewHolder baseViewHolder, int position) {
+                mMocoViewHolder = (MocoViewHolder) baseViewHolder;//这一句是必须的，你要从这里拿出复用的控件，是复用的关键
+                mMocoViewHolder.name.setText(mDataBeanList.get(position).getName());
+                mMocoViewHolder.description.setText(mDataBeanList.get(position).getDescription());
+                mMocoViewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
+                UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),mMocoViewHolder.picSmall);
+            }
+        }));
     }
 
     private void initView() {
