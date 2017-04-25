@@ -1,6 +1,6 @@
 # CommonAdapter
-    package com.adapter.smart;
-
+    ![](https://github.com/xubinbin1024/DragonDialog/blob/master/gif/list.png)
+    ![](https://github.com/xubinbin1024/DragonDialog/blob/master/gif/grid.png)
     import android.content.Context;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
