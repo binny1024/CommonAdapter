@@ -1,35 +1,30 @@
 # CommonAdapter
-    ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
-    ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
-    import android.content.Context;
-    import android.os.Bundle;
-    import android.support.v7.app.AppCompatActivity;
-    import android.view.View;
-    import android.widget.ImageView;
-    import android.widget.ListView;
-    import android.widget.TextView;
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
 
-    import com.adapter.smart.base.CommonAdapter;
-    import com.adapter.smart.base.IBaseViewHolder;
-    import com.adapter.smart.bean.MocoBean;
-    import com.adapter.smart.utils.UtilImageloader;
-    import com.adapter.smart.viewholder.MocoViewHolder;
-    import com.google.gson.Gson;
-    import com.google.gson.reflect.TypeToken;
-    import com.lzy.okgo.OkGo;
-    import com.lzy.okgo.cache.CacheMode;
-    import com.lzy.okgo.callback.StringCallback;
-
-    import java.util.ArrayList;
-    import java.util.List;
-
-    import okhttp3.Call;
-    import okhttp3.Response;
-
-    import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
-
-    public class MainActivity extends AppCompatActivity {
-
+        import android.content.Context;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.view.View;
+        import android.widget.ImageView;
+        import android.widget.ListView;
+        import android.widget.TextView;
+        import com.adapter.smart.base.CommonAdapter;
+        import com.adapter.smart.base.IBaseViewHolder;
+        import com.adapter.smart.bean.MocoBean;
+        import com.adapter.smart.utils.UtilImageloader;
+        import com.adapter.smart.viewholder.MocoViewHolder;
+        import com.google.gson.Gson;
+        import com.google.gson.reflect.TypeToken;
+        import com.lzy.okgo.OkGo;
+        import com.lzy.okgo.cache.CacheMode;
+        import com.lzy.okgo.callback.StringCallback;
+        import java.util.ArrayList;
+        import java.util.List;
+        import okhttp3.Call;
+        import okhttp3.Response;
+        import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
+        public class MainActivity extends AppCompatActivity {
         private ListView mListView;//可以换成GrifView
         private MocoBean mMocoBean;
         private Context mContext;
