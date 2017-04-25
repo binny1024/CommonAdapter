@@ -36,7 +36,6 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             mContext = this;
-
             initView();
             getData();
         }
@@ -73,16 +72,28 @@
             for (int i = 0; i < size; i++) {
                 mDataBeanList.add(mMocoBean.getData().get(i));
             }
-                /*
-                * CommonAdapter：改参数实现了IBaseViewHolder接口
-                * CommonAdapter的第三个接口也接受同样的参数，而且与CommonAdapter的泛型参数是同一类型
-                * */
 
+            /*
+            * CommonAdapter：改参数实现了IBaseViewHolder接口
+            * CommonAdapter的第三个接口也接受同样的参数，而且与CommonAdapter的泛型参数是同一类型
+            * */
             mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
                 @Override
                 public CommonAdapter.IBaseViewHolder initView(View convertView) {
                     mMocoViewHolder = new MocoViewHolder();
 
+                    /*
+                    * 常规方法得到控件
+                    * */
+
+    //                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
+    //                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
+    //                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
+    //                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+
+                    /*
+                    * 通过泛型方法得到控件
+                    * */
                     mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
                     mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
                     mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
@@ -105,5 +116,6 @@
         private void initView() {
             mListView = (ListView) findViewById(R.id.id_listview);
         }
+
 
     }
