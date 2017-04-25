@@ -11,6 +11,7 @@
 
 一个是给 CommonAdapter 用；
 一个是给  CommonAdapter 的内部回调接口 ViewHolderCallback 。
+
 此处可以将adapter和activity分离，为了演示功能，没有分开来写
 
     mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {...}
