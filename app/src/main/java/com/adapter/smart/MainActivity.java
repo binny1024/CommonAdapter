@@ -4,9 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.adapter.smart.base.CommonAdapter;
 import com.adapter.smart.bean.MocoBean;
@@ -78,17 +76,26 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback() {
             @Override
             public CommonAdapter.IBaseViewHolder initViewHolder(View convertView) {
-                mMocoViewHolder = new MocoViewHolder();//初始化的时候，只会
-                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
-                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
-                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
-                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+                mMocoViewHolder = new MocoViewHolder();
+
+//                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
+//                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
+//                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
+//                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+
+                mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
+                mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
+                mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
+                mMocoViewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
+
                 return mMocoViewHolder;
             }
 
             @Override
             public void bindDataToItemView(CommonAdapter.IBaseViewHolder baseViewHolder, int position) {
+
                 mMocoViewHolder = (MocoViewHolder) baseViewHolder;//这一句是必须的，你要从这里拿出复用的控件，是复用的关键
+
                 mMocoViewHolder.name.setText(mDataBeanList.get(position).getName());
                 mMocoViewHolder.description.setText(mDataBeanList.get(position).getDescription());
                 mMocoViewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());

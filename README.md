@@ -79,10 +79,15 @@
                 //这里面，只需要实例化你的控件，；类似于你在Activity的onCreate里初始化控件一样
                 //此处，还可以为每一个item设置事件监听
                     mMocoViewHolder = new MocoViewHolder();
-                    mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
-                    mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
-                    mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
-                    mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+
+    //                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
+    //                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
+    //                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
+    //                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+                    mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
+                    mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
+                    mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
+                    mMocoViewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
                     return mMocoViewHolder;
                 }
 
