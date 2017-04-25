@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setAdapterView(MocoBean mocoBean) {
 
-        int size = mMocoBean.getData().size();
+        int size = mocoBean.getData().size();
         //封装后的写法
         mDataBeanList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            mDataBeanList.add(mMocoBean.getData().get(i));
+            mDataBeanList.add(mocoBean.getData().get(i));
         }
 
         /*
