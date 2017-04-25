@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
             public CommonAdapter.IBaseViewHolder initViewHolder(View convertView) {
                 mMocoViewHolder = new MocoViewHolder();
 
+//                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
+//                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
+//                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
+//                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
+
                 mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
                 mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
                 mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
