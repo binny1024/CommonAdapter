@@ -136,14 +136,17 @@
                             }.getType());
 
                             if (mMocoBean != null) {
+
                                 //传统的写法
     //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
+
                                 int size = mMocoBean.getData().size();
                                 //封装后的写法
                                 mDataBeanList = new ArrayList<>();
                                 for (int i = 0; i < size; i++) {
                                     mDataBeanList.add(mMocoBean.getData().get(i));
                                 }
+                                //封装后，只需这一行就可以了
                                 mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mDataBeanList.size(), R.layout.list_view_item,new MocoViewHolderHelper(mDataBeanList)));
                             }
                         }
