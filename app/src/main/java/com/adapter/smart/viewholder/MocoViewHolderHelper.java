@@ -1,14 +1,13 @@
-package com.adapter.smart.holdercallback;
+package com.adapter.smart.viewholder;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.adapter.smart.R;
-import com.adapter.smart.base.CommonAdapter;
 import com.adapter.smart.bean.MocoBean;
+import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.utils.UtilImageloader;
-import com.adapter.smart.viewholder.MocoViewHolder;
 
 import java.util.List;
 
@@ -16,10 +15,14 @@ import java.util.List;
  * Created by smart on 2017/4/26.
  */
 
-public class MocoCallback implements CommonAdapter.ViewHolderCallback<MocoViewHolder> {
+/*
+* 实例化你的viewholder
+* 将数据和viewholder的控件绑定
+* */
+public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder> {
     private List<MocoBean.DataList> mDataBeanList;
 
-    public MocoCallback(List<MocoBean.DataList> dataBeanList) {
+    public MocoViewHolderHelper(List<MocoBean.DataList> dataBeanList) {
         mDataBeanList = dataBeanList;
     }
 

@@ -1,4 +1,4 @@
-package com.adapter.smart.base;
+package com.adapter.smart.common;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
