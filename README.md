@@ -1,29 +1,90 @@
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
-![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
 
 
 使用方法：
+
 1、自定义viewholder,这一步跟你用传统的方式是一样的，里面封装了item控件的引用；
 
-但是，要实现 CommonAdapter.IBaseViewHolder 接口。
+   但是，要实现 CommonAdapter.IBaseViewHolder 接口。
 
-2、给AdapterView(如 ListView)配置 CommonAdapter 时，要传递两个泛型参数 （MocoViewHolder） 该参数实现了IBaseViewHolder接口。
+   示例代码：MocoViewHolder
 
-一个是给 CommonAdapter 用；
-一个是给  CommonAdapter 的内部回调接口 ViewHolderCallback 。
+    public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
+        public TextView name;
+        public TextView description;
+        public TextView learner;
+        public ImageView picSmall;
+    }
+2、自定义 MocoViewHolderHelper继承自CommonAdapter.ViewHolderCallback<T>，来实现 viewholder的实例化和数据绑定。
 
-此处可以将adapter和activity分离，为了演示功能，没有分开来写
+   要传递一个泛型参数 T （也就是你自定义的自定义viewholder）
 
-    mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {...}
+   示例代码：MocoViewHolderHelper
 
-3、initView(View convertView)实例化控件
+    package com.adapter.smart.viewholder;
 
- bindView(MocoViewHolder viewHolder, int position)将数据绑定到视图
+    import android.content.Context;
+    import android.support.annotation.NonNull;
+    import android.view.View;
 
-示例代码：
+    import com.adapter.smart.R;
+    import com.adapter.smart.bean.MocoBean;
+    import com.adapter.smart.common.CommonAdapter;
+    import com.adapter.smart.utils.UtilImageloader;
+
+    import java.util.List;
+
+    /**
+     * Created by smart on 2017/4/26.
+     */
+
+    /*
+    * 实例化你的viewholder
+    * 将数据和viewholder的控件绑定
+    * */
+    public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder> {
+        private List<MocoBean.DataList> mDataBeanList;
+
+        public MocoViewHolderHelper(List<MocoBean.DataList> dataBeanList) {
+            mDataBeanList = dataBeanList;
+        }
+
+        <!-- 实例化viewholder -->
+
+        @Override
+        public CommonAdapter.IBaseViewHolder initViewHolder(MocoViewHolder viewHolder, @NonNull View convertView) {
+            viewHolder = new MocoViewHolder();
+            viewHolder.name = CommonAdapter.getView(convertView, R.id.id_name);
+            viewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
+            viewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
+            viewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
+
+            return viewHolder;
+        }
+
+        <!-- 数据绑定 -->
+
+        @Override
+        public void bindView(Context context, MocoViewHolder viewHolder, int position) {
+            viewHolder.name.setText(mDataBeanList.get(position).getName());
+            viewHolder.description.setText(mDataBeanList.get(position).getDescription());
+            viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
+            UtilImageloader.setImage(context,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
+        }
+    }
+
+
+3、给AdapterView(如 ListView)配置 CommonAdapter 时，要传递一个泛型参数 （MocoViewHolder），
+
+　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
+
+　此处可以将adapter和activity分离，为了演示功能，没有分开来写．
+
+    mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mDataBeanList.size(), R.layout.list_view_item,new MocoViewHolderHelper(mDataBeanList)));
+
+
+示例代码：MainActivity
 
     package com.adapter.smart;
-
     import android.content.Context;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
@@ -95,3 +156,7 @@
             mListView = (ListView) findViewById(R.id.id_listview);
         }
     }
+
+
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
+![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
