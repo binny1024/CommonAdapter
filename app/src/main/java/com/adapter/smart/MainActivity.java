@@ -21,6 +21,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
+import static com.adapter.smart.constants.ConstantUrl.TESTJSON;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,10 +36,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
         initView();
-        getData();
+        getDataByString();
+//        getDataByNet();
 
     }
-    private void getData() {
+
+    private void getDataByString() {
+        Gson gson = new Gson();
+        mMocoBean = new MocoBean();
+        mMocoBean = gson.fromJson(TESTJSON, new TypeToken<MocoBean>(){
+        }.getType());
+
+        if (mMocoBean != null) {
+            //传统的写法
+//                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
+            //封装后的写法
+            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
+        }
+    }
+
+    private void getDataByNet() {
+
         OkGo.get(MOCO_URL)     // 请求方式和请求url
                 .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
                 .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个

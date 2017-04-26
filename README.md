@@ -1,7 +1,9 @@
 
 
 使用方法：
-1、测试数据 来自慕课网的一个接口
+1、测试数据 来自慕课网的一个接口,不想去请求网络的话，直接把下面的作为作为字符串使用;
+
+   示例中两种方式都给出了，注释了网络请求数据的代码，使用的本地字符串。其实是一样的。
 
 	{
 		"status": 1,
@@ -420,6 +422,7 @@
     import okhttp3.Response;
 
     import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
+    import static com.adapter.smart.constants.ConstantUrl.TESTJSON;
 
     public class MainActivity extends AppCompatActivity {
 
@@ -434,10 +437,27 @@
             setContentView(R.layout.activity_main);
             mContext = this;
             initView();
-            getData();
+            getDataByString();
+    //        getDataByNet();
 
         }
-        private void getData() {
+
+        private void getDataByString() {
+            Gson gson = new Gson();
+            mMocoBean = new MocoBean();
+            mMocoBean = gson.fromJson(TESTJSON, new TypeToken<MocoBean>(){
+            }.getType());
+
+            if (mMocoBean != null) {
+                //传统的写法
+    //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
+                //封装后的写法
+                mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
+            }
+        }
+
+        private void getDataByNet() {
+
             OkGo.get(MOCO_URL)     // 请求方式和请求url
                     .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
                     .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
@@ -463,7 +483,10 @@
         private void initView() {
             mListView = (ListView) findViewById(R.id.id_listview);
         }
+
+
     }
+
 
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
