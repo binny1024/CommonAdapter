@@ -27,14 +27,14 @@ public class CommonBean<T>  implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    private List<T> dataList;
+    private List<T> data;
 
     public List<T> getDataList() {
-        return dataList;
+        return data;
     }
 
     public void setDataList(List<T> data) {
-        this.dataList = data;
+        this.data = data;
     }
 
 }

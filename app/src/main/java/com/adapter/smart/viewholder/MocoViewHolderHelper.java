@@ -32,10 +32,10 @@ public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<Mo
 
     @Override
     public void bindView(Context context, MocoBean bean, MocoViewHolder viewHolder, int position) {
-        viewHolder.name.setText(bean.getData().get(position).getName());
-        viewHolder.description.setText(bean.getData().get(position).getDescription());
-        viewHolder.learner.setText("人数："+bean.getData().get(position).getLearner());
-        UtilImageloader.setImage(context,bean.getData().get(position).getPicSmall(),viewHolder.picSmall);
+        viewHolder.name.setText(bean.getDataList().get(position).getName());
+        viewHolder.description.setText(bean.getDataList().get(position).getDescription());
+        viewHolder.learner.setText("人数："+bean.getDataList().get(position).getLearner());
+        UtilImageloader.setImage(context,bean.getDataList().get(position).getPicSmall(),viewHolder.picSmall);
     }
 
 }
