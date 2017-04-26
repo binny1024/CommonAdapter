@@ -1,8 +1,9 @@
-:tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352::tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352::tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352::tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352::tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352: :tw-1f352::tw-1f352: :tw-1f352:
 
-# 测试数据 :tw-1f34e:
-###### 来自慕课网的一个接口,不想去请求网络的话，直接把下面的作为作为字符串使用;
-###### 示例中两种方式都给出了，注释了网络请求数据的代码，使用的本地字符串。其实是一样的。
+
+使用方法：
+1、测试数据 来自慕课网的一个接口,不想去请求网络的话，直接把下面的作为作为字符串使用;
+
+   示例中两种方式都给出了，注释了网络请求数据的代码，使用的本地字符串。其实是一样的。
 
 	{
 		"status": 1,
@@ -250,11 +251,10 @@
 		],
 		"msg": "成功"
 	}
-:tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e: :tw-1f34e::tw-1f34e:
-# 使用方法
-### 1、编写 JavaBean
-#####  CommonBean< T >   该实体类只需继承 CommonBean< T > ，其中 T 是参数化类型，一般是json数组中的一个对象对应的实体类，本例中是 MocoBean；
-#####   CommonBean已经实现了序列化接口。
+
+2、编写 JavaBean
+  该实体类只需继承 CommonBean< T > ，其中 T 是参数化类型，一般是json数组中的一个对象对应的实体类，本例中是 MocoBean；
+  CommonBean已经实现了序列化接口。
 
 	package com.adapter.smart.bean;
 
@@ -322,10 +322,8 @@
 		}
 	}
 
-:tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b::tw-1f48b: :tw-1f48b: :tw-1f48b: :tw-1f48b:
-### 2、自定义viewholder
 
- 这一步跟你用传统的方式是一样的，里面封装了 item 控件的引用；
+3、自定义viewholder,这一步跟你用传统的方式是一样的，里面封装了 item 控件的引用；
 
    但是，要实现 CommonAdapter.IBaseViewHolder 接口。
 
@@ -337,16 +335,13 @@
         public TextView learner;
         public ImageView picSmall;
     }
- :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337: :tw-1f337:
-### 3、自定义 MocoViewHolderHelper
 
-#####  继承自CommonAdapter.ViewHolderCallback< T，B >，来实现 viewholder的实例化和数据绑定。
+4、自定义 MocoViewHolderHelper继承自CommonAdapter.ViewHolderCallback< T，B >，来实现 viewholder的实例化和数据绑定。
 
-#####    要传递一个泛型参数 T （MocoViewHolder），也就是你自定义的自定义viewholder；
+   要传递一个泛型参数 T （MocoViewHolder），也就是你自定义的自定义viewholder；
+   数据集的实体类 B( MocoBean)
 
-#####    数据集的实体类 B( MocoBean)，也就是你的实体类
-
-#####    示例代码：MocoViewHolderHelper
+   示例代码：MocoViewHolderHelper
 
 
 	import android.content.Context;
@@ -389,12 +384,10 @@
 
 	}
 
- :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496: :tw-1f496:
-### 4、给AdapterView(如 ListView)配置 Adapter
 
- #####  CommonAdapter< T > 时，要传递一个泛型参数 （MocoViewHolder），
+5、给AdapterView(如 ListView)配置 CommonAdapter< T > 时，要传递一个泛型参数 （MocoViewHolder），
 
-##### 　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
+　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
 
 		if (mMocoBean != null) {
 		//传统的写法
@@ -493,7 +486,7 @@
 
 
     }
-:tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af::tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af::tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af: :tw-1f4af:
+
 
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
