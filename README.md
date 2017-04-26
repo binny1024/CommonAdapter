@@ -14,7 +14,7 @@
         public TextView learner;
         public ImageView picSmall;
     }
-2、自定义 MocoViewHolderHelper继承自CommonAdapter.ViewHolderCallback<T>，来实现 viewholder的实例化和数据绑定。
+2、自定义 MocoViewHolderHelper继承自CommonAdapter.ViewHolderCallback< T >，来实现 viewholder的实例化和数据绑定。
 
    要传递一个泛型参数 T （也就是你自定义的自定义viewholder）
 
