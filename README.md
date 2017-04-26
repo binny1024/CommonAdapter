@@ -77,8 +77,6 @@
 
 　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
 
-　此处可以将adapter和activity分离，为了演示功能，没有分开来写．
-
     mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mDataBeanList.size(), R.layout.list_view_item,new MocoViewHolderHelper(mDataBeanList)));
 
 
