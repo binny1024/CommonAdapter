@@ -138,7 +138,6 @@
                             if (mMocoBean != null) {
                                 //传统的写法
     //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-                                //封装后的写法,为了方便对比，提了出来
                                 int size = mMocoBean.getData().size();
                                 //封装后的写法
                                 mDataBeanList = new ArrayList<>();
