@@ -9,32 +9,32 @@ import java.util.List;
 public class CommonBean<T>  implements Serializable {
 
     private static final long serialVersionUID = 7357105112620477247L;
-    protected int status;
-    protected String msg;
+    public int status;
+    public String msg;
 
-    protected int getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    protected void setStatus(int status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    protected String getMsg() {
+    public String getMsg() {
         return msg;
     }
 
-    protected void setMsg(String msg) {
+    public void setMsg(String msg) {
         this.msg = msg;
     }
-    private List<T> data;
+    private List<T> dataList;
 
-    public List<T> getData() {
-        return data;
+    public List<T> getDataList() {
+        return dataList;
     }
 
-    public void setData(List<T> data) {
-        this.data = data;
+    public void setDataList(List<T> data) {
+        this.dataList = data;
     }
 
 }
