@@ -434,7 +434,6 @@
             mContext = this;
             initView();
             getData();
-
         }
         private void getData() {
             OkGo.get(MOCO_URL)     // 请求方式和请求url
