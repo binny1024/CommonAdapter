@@ -16,26 +16,25 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
     private T mBaseViewHolder;
-    private int mDataListSize;
     private ViewHolderCallback mViewHolderCallback;
+    private CommonBean mBaseBean;
 
-    private Class<T> mTClass;
     /**
      * @param context 上下文
-     * @param dataListSize 数据集（大小）
+     * @param baseBean 数据集
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context,int dataListSize,int itemViewLayout,ViewHolderCallback viewHolderCallback) {
+    public CommonAdapter(Context context, CommonBean baseBean, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
         mContext = context;
-        mDataListSize = dataListSize;
+        mBaseBean = baseBean;
         mItemViewLayout = itemViewLayout;
         mViewHolderCallback = viewHolderCallback;
     }
 
     @Override
     public int getCount() {
-        return mDataListSize;
+        return mBaseBean.getData().size();
     }
 
     @Override
@@ -57,12 +56,12 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         }else {
             mBaseViewHolder = (T)convertView.getTag();
         }
-        mViewHolderCallback.bindView(mContext,mBaseViewHolder,position);
+        mViewHolderCallback.bindView(mContext,mBaseBean,mBaseViewHolder,position);
         return convertView;
     }
 
 
-    public interface ViewHolderCallback<BVH extends IBaseViewHolder>{
+    public interface ViewHolderCallback<BVH extends IBaseViewHolder,BEAN extends CommonBean>{
         /** 用于初始化ViewHolder
          * @param convertView
          */
@@ -71,7 +70,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindView(Context context,BVH viewHolder,int position);
+       void bindView(Context context,BEAN bean,BVH viewHolder,int position);
     }
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);

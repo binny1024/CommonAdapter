@@ -9,8 +9,6 @@ import com.adapter.smart.bean.MocoBean;
 import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.utils.UtilImageloader;
 
-import java.util.List;
-
 /**
  * Created by smart on 2017/4/26.
  */
@@ -19,12 +17,7 @@ import java.util.List;
 * 实例化你的viewholder
 * 将数据和viewholder的控件绑定
 * */
-public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder> {
-    private List<MocoBean.DataList> mDataBeanList;
-
-    public MocoViewHolderHelper(List<MocoBean.DataList> dataBeanList) {
-        mDataBeanList = dataBeanList;
-    }
+public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder,MocoBean> {
 
     @Override
     public CommonAdapter.IBaseViewHolder initViewHolder(MocoViewHolder viewHolder, @NonNull View convertView) {
@@ -38,10 +31,11 @@ public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<Mo
     }
 
     @Override
-    public void bindView(Context context, MocoViewHolder viewHolder, int position) {
-        viewHolder.name.setText(mDataBeanList.get(position).getName());
-        viewHolder.description.setText(mDataBeanList.get(position).getDescription());
-        viewHolder.learner.setText("人数："+mDataBeanList.get(position).getLearner());
-        UtilImageloader.setImage(context,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
+    public void bindView(Context context, MocoBean bean, MocoViewHolder viewHolder, int position) {
+        viewHolder.name.setText(bean.getData().get(position).getName());
+        viewHolder.description.setText(bean.getData().get(position).getDescription());
+        viewHolder.learner.setText("人数："+bean.getData().get(position).getLearner());
+        UtilImageloader.setImage(context,bean.getData().get(position).getPicSmall(),viewHolder.picSmall);
     }
+
 }
