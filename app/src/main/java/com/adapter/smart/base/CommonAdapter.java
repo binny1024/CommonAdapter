@@ -7,10 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.adapter.smart.bean.MocoBean;
-
-import java.util.List;
-
 
 /**
  * Created by smart on 2017/4/24.
@@ -18,12 +14,12 @@ import java.util.List;
 
 public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
-    private List<MocoBean.DataList> mDataList;
     protected Context mContext;
-    private IBaseViewHolder mBaseViewHolder;
+    private T mBaseViewHolder;
     private int mDataListSize;
     private ViewHolderCallback mViewHolderCallback;
 
+    private Class<T> mTClass;
     /**
      * @param context 上下文
      * @param dataListSize 数据集（大小）
@@ -56,12 +52,12 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder = mViewHolderCallback.initView(convertView);
+            mBaseViewHolder = (T) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
             mBaseViewHolder = (T)convertView.getTag();
         }
-        mViewHolderCallback.bindView(mBaseViewHolder,position);
+        mViewHolderCallback.bindView(mContext,mBaseViewHolder,position);
         return convertView;
     }
 
@@ -70,12 +66,12 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         /** 用于初始化ViewHolder
          * @param convertView
          */
-        IBaseViewHolder initView(@NonNull View convertView);
+        IBaseViewHolder initViewHolder(BVH viewHolder, @NonNull View convertView);
 
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindView(BVH viewHolder,int position);
+       void bindView(Context context,BVH viewHolder,int position);
     }
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);

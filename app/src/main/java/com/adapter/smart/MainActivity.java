@@ -3,12 +3,11 @@ package com.adapter.smart;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ListView;
 
 import com.adapter.smart.base.CommonAdapter;
 import com.adapter.smart.bean.MocoBean;
-import com.adapter.smart.utils.UtilImageloader;
+import com.adapter.smart.holdercallback.MocoCallback;
 import com.adapter.smart.viewholder.MocoViewHolder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private MocoBean mMocoBean;
     private Context mContext;
     private List<MocoBean.DataList> mDataBeanList;
-    private MocoViewHolder mMocoViewHolder;
+//    private MocoViewHolder mMocoViewHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,35 +71,49 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < size; i++) {
             mDataBeanList.add(mocoBean.getData().get(i));
         }
+        mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,size, R.layout.list_view_item,new MocoCallback(mDataBeanList)));
 
         /*
         * CommonAdapter：该参数实现了IBaseViewHolder接口
         * CommonAdapter的第三个接口也接受同样的参数，而且与CommonAdapter的泛型参数是同一类型
         * */
 
-        mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
-            @Override
+      /*  mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext, size, R.layout.list_view_item, new CommonAdapter.ViewHolderCallback<MocoViewHolder>() {
+           *//* @Override
             public CommonAdapter.IBaseViewHolder initView(View convertView) {
                 mMocoViewHolder = new MocoViewHolder();
 
-                /*
+                *//**//*
                 * 常规方法得到控件
-                * */
+                * *//**//*
 
 //                mMocoViewHolder.name = (TextView) convertView.findViewById(R.id.id_name);
 //                mMocoViewHolder.description = (TextView) convertView.findViewById(R.id.id_description);
 //                mMocoViewHolder.learner = (TextView) convertView.findViewById(R.id.id_learner);
 //                mMocoViewHolder.picSmall = (ImageView) convertView.findViewById(R.id.id_picSmall);
 
-                /*
+                *//**//*
                 * 通过泛型方法得到控件
-                * */
+                * *//**//*
                 mMocoViewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
                 mMocoViewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
                 mMocoViewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
                 mMocoViewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
 
                 return mMocoViewHolder;
+            }*//*
+
+            @Override
+            public CommonAdapter.IBaseViewHolder initViewHolder(MocoViewHolder viewHolder, @NonNull View convertView) {
+                if (viewHolder == null) {
+                    viewHolder = new MocoViewHolder();
+                }
+                viewHolder.name = CommonAdapter.getView(convertView,R.id.id_name);
+                viewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
+                viewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
+                viewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
+
+                return viewHolder;
             }
 
             @Override
@@ -111,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 UtilImageloader.setImage(mContext,mDataBeanList.get(position).getPicSmall(),viewHolder.picSmall);
             }
 
-        }));
+        }));*/
     }
 
     private void initView() {
