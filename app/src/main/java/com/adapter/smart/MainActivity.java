@@ -7,15 +7,14 @@ import android.widget.ListView;
 
 import com.adapter.smart.bean.MocoBean;
 import com.adapter.smart.common.CommonAdapter;
-import com.adapter.smart.viewholder.MocoViewHolderHelper;
 import com.adapter.smart.viewholder.MocoViewHolder;
+import com.adapter.smart.viewholder.MocoViewHolderHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private MocoBean mMocoBean;
     private Context mContext;
-    private List<MocoBean.DataList> mDataBeanList;
+    private List<MocoBean> mDataBeanList;
 //    private MocoViewHolder mMocoViewHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +55,8 @@ public class MainActivity extends AppCompatActivity {
                         if (mMocoBean != null) {
                             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-
-                            int size = mMocoBean.getData().size();
                             //封装后的写法
-                            mDataBeanList = new ArrayList<>();
-                            for (int i = 0; i < size; i++) {
-                                mDataBeanList.add(mMocoBean.getData().get(i));
-                            }
-                            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mDataBeanList.size(), R.layout.list_view_item,new MocoViewHolderHelper(mDataBeanList)));
+                            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
                         }
                     }
                 });
