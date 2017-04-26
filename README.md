@@ -73,7 +73,7 @@
     }
 
 
-3、给AdapterView(如 ListView)配置 CommonAdapter 时，要传递一个泛型参数 （MocoViewHolder），
+3、给AdapterView(如 ListView)配置 CommonAdapter< T > 时，要传递一个泛型参数 （MocoViewHolder），
 
 　该参数实现了IBaseViewHolder接口。也就是你自定义的自定义viewholder，CommonAdapter 用。
 
