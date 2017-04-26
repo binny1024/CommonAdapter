@@ -34,7 +34,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
 
     @Override
     public int getCount() {
-        return mBaseBean.getData().size();
+        return mBaseBean.getData()==null?1:mBaseBean.getData().size();
     }
 
     @Override
