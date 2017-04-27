@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">打造通用适配器</string>
+    <string name="no_obj">不含对象的json</string>
+    <string name="one_obj">含一个对象的json</string>
+    <string name="mutil_obj">含多个对象的json</string>
 </resources>

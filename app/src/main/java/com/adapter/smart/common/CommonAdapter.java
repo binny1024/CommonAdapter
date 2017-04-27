@@ -65,12 +65,12 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         /** 用于初始化ViewHolder
          * @param convertView
          */
-        IBaseViewHolder initViewHolder(BVH viewHolder, @NonNull View convertView);
+        IBaseViewHolder initViewHolder(@NonNull BVH viewHolder, @NonNull View convertView);
 
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindView(Context context,BEAN bean,BVH viewHolder,int position);
+       void bindView(Context context,BEAN beanList,BVH viewHolder,int position);
     }
     public static <V extends View> V getView(View convertView,int itemViewId){
         return (V) convertView.findViewById(itemViewId);

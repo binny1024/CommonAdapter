@@ -8,9 +8,16 @@ import java.util.List;
 
 public class CommonBean<T>  implements Serializable {
 
+    /*
+    *  T 就是封装在list的那个对象的类型
+    *  */
     private static final long serialVersionUID = 7357105112620477247L;
     public int status;
     public String msg;
+    private List<T> data;//这个字段要跟json中的字段一样，否则解析后为 null
+
+
+
 
     public int getStatus() {
         return status;
@@ -27,7 +34,6 @@ public class CommonBean<T>  implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    private List<T> data;
 
     public List<T> getDataList() {
         return data;

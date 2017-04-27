@@ -10,7 +10,7 @@ import com.adapter.smart.common.CommonAdapter;
  * Created by smart on 2017/4/25.
  */
 
-public class MocoViewHolder implements CommonAdapter.IBaseViewHolder {
+public class MutilObjViewHolder implements CommonAdapter.IBaseViewHolder {
     public TextView name;
     public TextView description;
     public TextView learner;

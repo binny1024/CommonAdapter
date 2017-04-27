@@ -1,21 +1,21 @@
-package com.adapter.smart;
+package com.adapter.smart.activity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
-import com.adapter.smart.bean.MocoBean;
+import com.adapter.smart.R;
+import com.adapter.smart.bean.BeanMutilObj;
 import com.adapter.smart.common.CommonAdapter;
-import com.adapter.smart.viewholder.MocoViewHolder;
-import com.adapter.smart.viewholder.MocoViewHolderHelper;
+import com.adapter.smart.viewholder.MutilObjViewHolder;
+import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
-
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -23,37 +23,36 @@ import okhttp3.Response;
 import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
 import static com.adapter.smart.constants.ConstantUrl.TESTJSON;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MutilObjActivity extends AppCompatActivity {
     private ListView mListView;
-    private MocoBean mMocoBean;
+    private BeanMutilObj mMocoBeanList;
     private Context mContext;
-    private List<MocoBean> mDataBeanList;
-//    private MocoViewHolder mMocoViewHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mContext = this;
-        initView();
-        getDataByString();
-//        getDataByNet();
+        setContentView(R.layout.activity_common);
 
+
+        mContext = this;
+        mListView = (ListView) findViewById(R.id.id_listview);
+        getDataByString();
     }
 
     private void getDataByString() {
         Gson gson = new Gson();
-        mMocoBean = new MocoBean();
-        mMocoBean = gson.fromJson(TESTJSON, new TypeToken<MocoBean>(){
+        mMocoBeanList = new BeanMutilObj();
+        mMocoBeanList = gson.fromJson(TESTJSON, new TypeToken<BeanMutilObj>(){
         }.getType());
-
-        if (mMocoBean != null) {
+        Log.i("xxx", "wwwwww: ");
+        if (mMocoBeanList != null) {
             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
             //封装后的写法
-            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
+            Log.i("xxx", "getDataByString: ");
+            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mMocoBeanList, R.layout.list_view_item,new MutilObjViewHolderHelper()));
         }
     }
+
 
     private void getDataByNet() {
 
@@ -66,22 +65,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(String s, Call call, Response response) {
 //                        Log.i("xxx", "onSuccess: "+s);
                         Gson gson = new Gson();
-                        mMocoBean = new MocoBean();
-                        mMocoBean = gson.fromJson(s, new TypeToken<MocoBean>(){
+                        mMocoBeanList = new BeanMutilObj();
+                        mMocoBeanList = gson.fromJson(s, new TypeToken<BeanMutilObj>(){
                         }.getType());
 
-                        if (mMocoBean != null) {
+                        if (mMocoBeanList != null) {
                             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
                             //封装后的写法
-                            mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
+                            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mMocoBeanList, R.layout.list_view_item,new MutilObjViewHolderHelper()));
                         }
                     }
                 });
     }
-    private void initView() {
-        mListView = (ListView) findViewById(R.id.id_listview);
-    }
-
 
 }

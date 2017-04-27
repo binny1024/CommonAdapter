@@ -252,4 +252,19 @@ public class ConstantUrl {
             "\t\t],\n" +
             "\t\t\"msg\": \"成功\"\n" +
             "\t}";
+
+    public final static String NO_OBJECT = "{\n" +
+            "    \"status\": 1,\n" +
+            "    \"name\": \"欧阳慕远\",\n" +
+            "\t\"age\":12,\n" +
+            "    \"msg\": \"成功\"\n" +
+            "}";
+    public final static String ONE_OBJECT = "{\n" +
+            "    \"status\": 1,\n" +
+            "    \"obj\": {\n" +
+            "        \"name\": \"Tony老师聊shell\\u2014\\u2014环境变量配置文件\",\n" +
+            "        \"age\": 12312\n" +
+            "    },\n" +
+            "    \"msg\": \"成功\"\n" +
+            "}";
 }
