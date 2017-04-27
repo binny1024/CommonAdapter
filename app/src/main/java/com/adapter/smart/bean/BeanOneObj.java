@@ -10,6 +10,10 @@ import com.google.gson.annotations.SerializedName;
 public class BeanOneObj extends CommonBean<Void> {
 
 
+    /*
+    * 如果没有数组的传一个Void 或者什么都不传
+    * */
+
     /**
      * obj : {"name":"Tony老师聊shell\u2014\u2014环境变量配置文件","age":12312}
      */
