@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.adapter.smart.R;
-import com.adapter.smart.bean.BeanNoObj;
 import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.viewholder.MutilObjViewHolder;
 import com.adapter.smart.viewholder.NoObjViewHolderHelper;
@@ -17,7 +16,7 @@ import static com.adapter.smart.constants.ConstantUrl.NO_OBJECT;
 
 public class NoObjActivity extends AppCompatActivity {
 
-    private BeanNoObj mBeanObj;
+    private com.adapter.smart.bean.BeanNoObj mBeanObj;
     private Context mContext;
     private ListView mListView;
 
@@ -33,15 +32,15 @@ public class NoObjActivity extends AppCompatActivity {
 
     private void noObject() {
         Gson gson = new Gson();
-        mBeanObj = new BeanNoObj();
-        mBeanObj = gson.fromJson(NO_OBJECT, new TypeToken<BeanNoObj>(){
+        mBeanObj = new com.adapter.smart.bean.BeanNoObj();
+        mBeanObj = gson.fromJson(NO_OBJECT, new TypeToken<com.adapter.smart.bean.BeanNoObj>(){
         }.getType());
 
         if (mBeanObj != null) {
             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
             //封装后的写法
-            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mBeanObj, R.layout.no_obj_item,new NoObjViewHolderHelper()));
+            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mBeanObj,1, R.layout.no_obj_item,new NoObjViewHolderHelper()));
         }
     }
 }

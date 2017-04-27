@@ -1,12 +1,11 @@
 package com.adapter.smart.common;
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class CommonBean<T>  implements Serializable {
+public class CommonBean<T>  implements BaseBean {
 
     /*
     *  T 就是封装在list的那个对象的类型

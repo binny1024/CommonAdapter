@@ -13,7 +13,6 @@ import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.viewholder.MutilObjViewHolder;
 import com.adapter.smart.viewholder.OneObjViewHolderHelper;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +22,7 @@ import static com.adapter.smart.constants.ConstantUrl.ONE_OBJECT;
 public class OneObjActivity extends AppCompatActivity {
     @BindView(R.id.activity_mutil_obj)
     LinearLayout mActivityMutilObj;
-    private BeanOneObj mBeanOneObj;
+    private com.adapter.smart.bean.BeanOneObj mBeanOneObj;
     private Context mContext;
     private ListView mListView;
 
@@ -42,14 +41,13 @@ public class OneObjActivity extends AppCompatActivity {
     private void oneObject() {
         Gson gson = new Gson();
         mBeanOneObj = new BeanOneObj();
-        mBeanOneObj = gson.fromJson(ONE_OBJECT, new TypeToken<BeanOneObj>() {
-        }.getType());
+        mBeanOneObj = gson.fromJson(ONE_OBJECT, BeanOneObj.class);
 
         if (mBeanOneObj != null) {
             //传统的写法
 //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
             //封装后的写法
-            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, mBeanOneObj, R.layout.no_obj_item, new OneObjViewHolderHelper()));
+            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, mBeanOneObj,1, R.layout.no_obj_item, new OneObjViewHolderHelper()));
         }
     }
 

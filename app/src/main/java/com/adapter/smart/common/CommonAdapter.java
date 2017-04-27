@@ -17,7 +17,8 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
     protected Context mContext;
     private T mBaseViewHolder;
     private ViewHolderCallback mViewHolderCallback;
-    private CommonBean mBaseBean;
+    private BaseBean mBaseBean;
+    private int listSize;
 
     /**
      * @param context 上下文
@@ -25,16 +26,22 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
      * @param itemViewLayout （item的布局文件）
      * @param viewHolderCallback （viewholder的接口）
      */
-    public CommonAdapter(Context context, CommonBean baseBean, int itemViewLayout, ViewHolderCallback viewHolderCallback) {
+    public CommonAdapter(Context context, BaseBean baseBean,Integer listSize,int itemViewLayout, ViewHolderCallback viewHolderCallback) {
         mContext = context;
         mBaseBean = baseBean;
         mItemViewLayout = itemViewLayout;
         mViewHolderCallback = viewHolderCallback;
+        if (listSize != null) {
+            this.listSize = listSize;
+        }else {
+            listSize = 1;
+        }
+
     }
 
     @Override
     public int getCount() {
-        return mBaseBean.getDataList()==null?1:mBaseBean.getDataList().size();
+        return listSize;
     }
 
     @Override
@@ -57,11 +64,12 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
             mBaseViewHolder = (T)convertView.getTag();
         }
         mViewHolderCallback.bindView(mContext,mBaseBean,mBaseViewHolder,position);
+
         return convertView;
     }
 
 
-    public interface ViewHolderCallback<BVH extends IBaseViewHolder,BEAN extends CommonBean>{
+    public interface ViewHolderCallback<BVH extends IBaseViewHolder,BEAN extends BaseBean>{
         /** 用于初始化ViewHolder
          * @param convertView
          */

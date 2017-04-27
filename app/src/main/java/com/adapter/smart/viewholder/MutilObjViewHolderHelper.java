@@ -37,7 +37,7 @@ public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallbac
     @Override
     public void bindView(Context context, BeanMutilObj beanList, MutilObjViewHolder viewHolder, int position) {
         if (mDataBeanList == null) {
-            mDataBeanList =   beanList.getDataList();
+            mDataBeanList =   beanList.getData();
         }
         viewHolder.name.setText(mDataBeanList.get(position).getName());//这个地方自己可以优化的，不必要每次获取list
         viewHolder.description.setText(mDataBeanList.get(position).getDescription());

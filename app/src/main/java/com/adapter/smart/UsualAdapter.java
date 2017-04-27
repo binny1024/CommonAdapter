@@ -25,7 +25,7 @@ public class UsualAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mMocoBean.getDataList().size();
+        return mMocoBean.getData().size();
     }
 
     @Override
@@ -54,10 +54,10 @@ public class UsualAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         convertView.setTag(viewHolder);
-        viewHolder.name.setText(mMocoBean.getDataList().get(position).getName());
-        viewHolder.description.setText(mMocoBean.getDataList().get(position).getDescription());
+        viewHolder.name.setText(mMocoBean.getData().get(position).getName());
+        viewHolder.description.setText(mMocoBean.getData().get(position).getDescription());
         viewHolder.picSmall.setImageResource(R.mipmap.ic_launcher);
-        UtilImageloader.setImage(mContext,mMocoBean.getDataList().get(position).getPicSmall(),viewHolder.picSmall);
+        UtilImageloader.setImage(mContext,mMocoBean.getData().get(position).getPicSmall(),viewHolder.picSmall);
         return convertView;
     }
     private static class ViewHolder{

@@ -1,35 +1,48 @@
 package com.adapter.smart.bean;
 
-import com.adapter.smart.common.CommonBean;
-import com.google.gson.annotations.SerializedName;
+import com.adapter.smart.common.BaseBean;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class BeanOneObj extends CommonBean<Void> {
-
-
-    /*
-    * 如果没有数组的传一个Void 或者什么都不传
-    * */
+public class BeanOneObj implements BaseBean {
 
     /**
-     * obj : {"name":"Tony老师聊shell\u2014\u2014环境变量配置文件","age":12312}
+     * status : 1
+     * data : {"name":"Tony老师聊shell\u2014\u2014环境变量配置文件","age":12312}
+     * msg : 成功
      */
 
-    @SerializedName("obj")
-    private ObjBean objX;
+    private int status;
+    private DataBean data;
+    private String msg;
 
-    public ObjBean getObjX() {
-        return objX;
+    public int getStatus() {
+        return status;
     }
 
-    public void setObjX(ObjBean objX) {
-        this.objX = objX;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public static class ObjBean {
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public static class DataBean {
         /**
          * name : Tony老师聊shell——环境变量配置文件
          * age : 12312

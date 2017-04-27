@@ -26,8 +26,8 @@ public class OneObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<
 
     @Override
     public void bindView(Context context, BeanOneObj bean, NoObjViewHolder viewHolder, int position) {
-        viewHolder.name.setText("名字："+bean.getObjX().getName());
-        viewHolder.age.setText("年龄："+bean.getObjX().getAge());
+        viewHolder.name.setText("名字："+bean.getData().getName());
+        viewHolder.age.setText("年龄："+bean.getData().getAge());
         viewHolder.status.setText("状态："+bean.getStatus());
         viewHolder.msg.setText("结果："+bean.getMsg());
     }
