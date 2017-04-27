@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.adapter.smart.activity.MainActivity">
+    tools:context="com.adapter.smart.view.MainActivity">
 
     <Button
         android:id="@+id/id_no_obj"

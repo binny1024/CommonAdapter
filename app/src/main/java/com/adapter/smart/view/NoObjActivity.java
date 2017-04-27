@@ -1,4 +1,4 @@
-package com.adapter.smart.activity;
+package com.adapter.smart.view;
 
 import android.content.Context;
 import android.os.Bundle;
