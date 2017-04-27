@@ -252,7 +252,7 @@
 	}
 
 # 使用方法
-### 1、编写 JavaBean
+### 1、编写 JavaBean（其他形式的json数据使用，请下载demo查看）
 #####  CommonBean< T >   该实体类只需继承 CommonBean< T > ，其中 T 是参数化类型，一般是json数组中的一个对象对应的实体类，本例中是 MocoBean；
 #####   CommonBean已经实现了序列化接口。
 
