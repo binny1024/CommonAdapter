@@ -7,7 +7,7 @@ import com.adapter.smart.common.CommonAdapter;
  */
 
 /*
-* 提供给P层的接口，用于反馈业务结果
+* M层提供给P层的接口，用于反馈业务结果
 * */
 public interface IDataResult<T extends  CommonAdapter.BaseBean > {
     void success(T bean);
