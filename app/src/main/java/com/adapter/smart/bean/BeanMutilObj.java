@@ -1,6 +1,6 @@
 package com.adapter.smart.bean;
 
-import com.adapter.smart.common.BaseBean;
+import com.adapter.smart.common.CommonAdapter;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by smart on 2017/4/24.
  */
 
-public class BeanMutilObj implements BaseBean{
+public class BeanMutilObj implements CommonAdapter.BaseBean {
 
 
     /**

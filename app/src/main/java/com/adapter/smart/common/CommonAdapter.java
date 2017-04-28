@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.io.Serializable;
+
 
 /**
  * Created by smart on 2017/4/24.
@@ -87,5 +89,11 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
     * */
     public interface IBaseViewHolder {
 
+    }
+    /**
+     * Created by smart on 2017/4/27.
+     */
+
+    public interface BaseBean extends Serializable {
     }
 }

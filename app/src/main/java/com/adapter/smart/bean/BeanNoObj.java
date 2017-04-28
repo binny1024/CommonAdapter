@@ -1,12 +1,12 @@
 package com.adapter.smart.bean;
 
-import com.adapter.smart.common.BaseBean;
+import com.adapter.smart.common.CommonAdapter;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class BeanNoObj implements BaseBean {
+public class BeanNoObj implements  CommonAdapter.BaseBean  {
     /**
      * status : 1
      * name : Tony老师聊shell——环境变量配置文件
