@@ -1,5 +1,6 @@
 package com.adapter.smart.view;
 
+import android.view.View;
 import android.widget.Toast;
 
 import com.adapter.smart.R;
@@ -14,8 +15,6 @@ import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
 
 public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
 
-
-
     @Override
     public void initPresenter() {
 //       mListView = UtilWidget.getView(this,R.id.id_listview);
@@ -25,11 +24,15 @@ public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMut
 
     @Override
     public void showList(BeanMutilObj beanMutilData) {
+        mAnimationDrawable.stop();
+        mImageView.setVisibility(View.GONE);
         mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
     }
 
     @Override
     public void showError(String msg) {
+        mAnimationDrawable.stop();
+        mImageView.setVisibility(View.GONE);
         Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
 }
