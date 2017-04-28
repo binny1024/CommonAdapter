@@ -252,75 +252,115 @@
 	}
 
 # 使用方法
-### 1、编写 JavaBean（其他形式的json数据使用，请下载demo查看）
-#####  CommonBean< T >   该实体类只需继承 CommonBean< T > ，其中 T 是参数化类型，一般是json数组中的一个对象对应的实体类，本例中是 MocoBean；
-#####   CommonBean已经实现了序列化接口。
+### 1、编写 JavaBean（其他形式的json数据使用，请下载demo查看）实现BassBean接口即可。
 
 	package com.adapter.smart.bean;
 
-	import com.adapter.smart.common.CommonBean;
+	import com.adapter.smart.common.BaseBean;
+
+	import java.util.List;
 
 	/**
 	 * Created by smart on 2017/4/24.
 	 */
 
-	public class MocoBean extends CommonBean<MocoBean> {
+	public class BeanMutilObj implements BaseBean{
 
-		private int id;
-		private String name;
-		private String picSmall;
-		private String picBig;
-		private String description;
-		private int learner;
 
-		public int getId() {
-			return id;
-		}
+    private int status;
+    private String msg;
+    private List<DataBean> data;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+    public int getStatus() {
+        return status;
+    }
 
-		public String getName() {
-			return name;
-		}
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-		public void setName(String name) {
-			this.name = name;
-		}
+    public String getMsg() {
+        return msg;
+    }
 
-		public String getPicSmall() {
-			return picSmall;
-		}
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
-		public void setPicSmall(String picSmall) {
-			this.picSmall = picSmall;
-		}
+    public List<DataBean> getData() {
+        return data;
+    }
 
-		public String getPicBig() {
-			return picBig;
-		}
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
 
-		public void setPicBig(String picBig) {
-			this.picBig = picBig;
-		}
+    public static class DataBean {
+        /**
+         * id : 1
+         * name : Tony老师聊shell——环境变量配置文件
+         * picSmall : http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg
+         * picBig : http://img.mukewang.com/55237dcc0001128c06000338.jpg
+         * description : 为你带来shell中的环境变量配置文件
+         * learner : 12312
+         */
 
-		public String getDescription() {
-			return description;
-		}
+        private int id;
+        private String name;
+        private String picSmall;
+        private String picBig;
+        private String description;
+        private int learner;
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+        public int getId() {
+            return id;
+        }
 
-		public int getLearner() {
-			return learner;
-		}
+        public void setId(int id) {
+            this.id = id;
+        }
 
-		public void setLearner(int learner) {
-			this.learner = learner;
-		}
-	}
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPicSmall() {
+            return picSmall;
+        }
+
+        public void setPicSmall(String picSmall) {
+            this.picSmall = picSmall;
+        }
+
+        public String getPicBig() {
+            return picBig;
+        }
+
+        public void setPicBig(String picBig) {
+            this.picBig = picBig;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public int getLearner() {
+            return learner;
+        }
+
+        public void setLearner(int learner) {
+            this.learner = learner;
+        }
+    }
+}
 
 ### 2、自定义viewholder
 
@@ -403,95 +443,42 @@
 		}
 
 
-示例代码：MainActivity
+示例代码：MutilObjActivity
 
-    package com.adapter.smart;
+	package com.adapter.smart.view;
 
-    import android.content.Context;
-    import android.os.Bundle;
-    import android.support.v7.app.AppCompatActivity;
-    import android.widget.ListView;
+	import android.widget.Toast;
 
-    import com.adapter.smart.bean.MocoBean;
-    import com.adapter.smart.common.CommonAdapter;
-    import com.adapter.smart.viewholder.MocoViewHolder;
-    import com.adapter.smart.viewholder.MocoViewHolderHelper;
-    import com.google.gson.Gson;
-    import com.google.gson.reflect.TypeToken;
-    import com.lzy.okgo.OkGo;
-    import com.lzy.okgo.cache.CacheMode;
-    import com.lzy.okgo.callback.StringCallback;
+	import com.adapter.smart.R;
+	import com.adapter.smart.bean.BeanMutilObj;
+	import com.adapter.smart.common.CommonAdapter;
+	import com.adapter.smart.presenter.PresenterJsonData;
+	import com.adapter.smart.viewholder.MutilObjViewHolder;
+	import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
 
-    import java.util.List;
+	import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
+	import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
 
-    import okhttp3.Call;
-    import okhttp3.Response;
+	public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
 
-    import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
-    import static com.adapter.smart.constants.ConstantUrl.TESTJSON;
+	    @Override
+	    public void initPresenter() {
+		//       mListView = UtilWidget.getView(this,R.id.id_listview);
+	        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
+		//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
+	    }
 
-    public class MainActivity extends AppCompatActivity {
+	    @Override
+	    public void showList(BeanMutilObj beanMutilData) {
+	        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
+	    }
 
-        private ListView mListView;
-        private MocoBean mMocoBean;
-        private Context mContext;
-        private List<MocoBean> mDataBeanList;
-    //    private MocoViewHolder mMocoViewHolder;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            mContext = this;
-            initView();
-            getDataByString();
-    //        getDataByNet();
+	    @Override
+	    public void showError(String msg) {
+	        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+	    }
+	}
 
-        }
-
-        private void getDataByString() {
-            Gson gson = new Gson();
-            mMocoBean = new MocoBean();
-            mMocoBean = gson.fromJson(TESTJSON, new TypeToken<MocoBean>(){
-            }.getType());
-
-            if (mMocoBean != null) {
-                //传统的写法
-    //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-                //封装后的写法
-                mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
-            }
-        }
-
-        private void getDataByNet() {
-
-            OkGo.get(MOCO_URL)     // 请求方式和请求url
-                    .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
-                    .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
-                    .cacheMode(CacheMode.DEFAULT)    // 缓存模式，详细请看缓存介绍
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onSuccess(String s, Call call, Response response) {
-    //                        Log.i("xxx", "onSuccess: "+s);
-                            Gson gson = new Gson();
-                            mMocoBean = new MocoBean();
-                            mMocoBean = gson.fromJson(s, new TypeToken<MocoBean>(){
-                            }.getType());
-
-                            if (mMocoBean != null) {
-                                //传统的写法
-    //                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-                                //封装后的写法
-                                mListView.setAdapter(new CommonAdapter<MocoViewHolder>(mContext,mMocoBean, R.layout.list_view_item,new MocoViewHolderHelper()));
-                            }
-                        }
-                    });
-        }
-        private void initView() {
-            mListView = (ListView) findViewById(R.id.id_listview);
-        }
-
-
-    }
 
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)

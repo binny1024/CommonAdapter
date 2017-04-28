@@ -1,82 +1,35 @@
 package com.adapter.smart.view;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObj;
 import com.adapter.smart.common.CommonAdapter;
+import com.adapter.smart.presenter.PresenterJsonData;
 import com.adapter.smart.viewholder.MutilObjViewHolder;
 import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheMode;
-import com.lzy.okgo.callback.StringCallback;
 
-import okhttp3.Call;
-import okhttp3.Response;
+import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
+import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
 
-import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
-import static com.adapter.smart.constants.ConstantUrl.TESTJSON;
+public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
 
-public class MutilObjActivity extends AppCompatActivity {
-    private ListView mListView;
-    private BeanMutilObj mMocoBeanList;
-    private Context mContext;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_common);
-
-
-        mContext = this;
-        mListView = (ListView) findViewById(R.id.id_listview);
-        getDataByString();
+    public void initPresenter() {
+//       mListView = UtilWidget.getView(this,R.id.id_listview);
+        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
+//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
     }
 
-    private void getDataByString() {
-        Gson gson = new Gson();
-        mMocoBeanList = new BeanMutilObj();
-        mMocoBeanList = gson.fromJson(TESTJSON, new TypeToken<BeanMutilObj>(){
-        }.getType());
-        Log.i("xxx", "wwwwww: ");
-        if (mMocoBeanList != null) {
-            //传统的写法
-//                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-            //封装后的写法
-            Log.i("xxx", "getDataByString: ");
-            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mMocoBeanList, R.layout.list_view_item,new MutilObjViewHolderHelper()));
-        }
+    @Override
+    public void showList(BeanMutilObj beanMutilData) {
+        mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext, beanMutilData,beanMutilData.getData().size() ,R.layout.list_view_item,new MutilObjViewHolderHelper()));
     }
 
-
-    private void getDataByNet() {
-
-        OkGo.get(MOCO_URL)     // 请求方式和请求url
-                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
-                .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
-                .cacheMode(CacheMode.DEFAULT)    // 缓存模式，详细请看缓存介绍
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(String s, Call call, Response response) {
-//                        Log.i("xxx", "onSuccess: "+s);
-                        Gson gson = new Gson();
-                        mMocoBeanList = new BeanMutilObj();
-                        mMocoBeanList = gson.fromJson(s, new TypeToken<BeanMutilObj>(){
-                        }.getType());
-
-                        if (mMocoBeanList != null) {
-                            //传统的写法
-//                        mListView.setAdapter(new UsualAdapter(mContext,mMocoBean));
-                            //封装后的写法
-                            mListView.setAdapter(new CommonAdapter<MutilObjViewHolder>(mContext,mMocoBeanList, R.layout.list_view_item,new MutilObjViewHolderHelper()));
-                        }
-                    }
-                });
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
-
 }

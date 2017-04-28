@@ -1,19 +1,31 @@
 package com.adapter.smart.bean;
 
-import com.adapter.smart.common.CommonBean;
+import com.adapter.smart.common.BaseBean;
 
 /**
  * Created by smart on 2017/4/26.
  */
 
-public class BeanNoObj extends CommonBean<Void> {
+public class BeanNoObj implements BaseBean {
     /**
-     * name : 徐斌
-     * age : 12
+     * status : 1
+     * name : Tony老师聊shell——环境变量配置文件
+     * age : 12312
+     * msg : 成功
      */
 
+    private int status;
     private String name;
     private int age;
+    private String msg;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getName() {
         return name;
@@ -30,4 +42,13 @@ public class BeanNoObj extends CommonBean<Void> {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
 }

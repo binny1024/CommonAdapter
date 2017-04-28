@@ -5,8 +5,8 @@ package com.adapter.smart.constants;
  */
 
 public class ConstantUrl {
-    public static String MOCO_URL="http://www.imooc.com/api/teacher?type=4&num=30";
-    public final static String TESTJSON = "{\n" +
+    public final static String MOCO_URL="http://www.imooc.com/api/teacher?type=4&num=30";
+    public final static String MUTIL_OBJECT = "{\n" +
             "\t\t\"status\": 1,\n" +
             "\t\t\"data\": [\n" +
             "\t\t\t{\n" +
@@ -255,16 +255,19 @@ public class ConstantUrl {
 
     public final static String NO_OBJECT = "{\n" +
             "    \"status\": 1,\n" +
-            "    \"name\": \"欧阳慕远\",\n" +
-            "\t\"age\":12,\n" +
+            "    \"name\": \"Tony老师聊shell\\u2014\\u2014环境变量配置文件\",\n" +
+            "    \"age\": 12312,\n" +
             "    \"msg\": \"成功\"\n" +
             "}";
     public final static String ONE_OBJECT = "{\n" +
             "    \"status\": 1,\n" +
-            "    \"obj\": {\n" +
-            "        \"name\": \"Tony老师聊shell\\u2014\\u2014环境变量配置文件\",\n" +
-            "        \"age\": 12312\n" +
-            "    },\n" +
+            "    \"data\": \n" +
+            "        {\n" +
+            "           \n" +
+            "            \"name\": \"Tony老师聊shell——环境变量配置文件\",\n" +
+            "          \n" +
+            "            \"age\": 12312\n" +
+            "        },\n" +
             "    \"msg\": \"成功\"\n" +
             "}";
 }
