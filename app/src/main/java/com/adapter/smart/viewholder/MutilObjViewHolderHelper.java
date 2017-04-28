@@ -8,6 +8,7 @@ import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanMutilObj;
 import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.utils.UtilImageloader;
+import com.adapter.smart.utils.UtilWidget;
 
 import java.util.List;
 
@@ -26,10 +27,10 @@ public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallbac
     public CommonAdapter.IBaseViewHolder initViewHolder(MutilObjViewHolder viewHolder, @NonNull View convertView) {
         viewHolder = new MutilObjViewHolder();
 
-        viewHolder.name = CommonAdapter.getView(convertView, R.id.id_name);
-        viewHolder.description = CommonAdapter.getView(convertView,R.id.id_description);
-        viewHolder.learner = CommonAdapter.getView(convertView,R.id.id_learner);
-        viewHolder.picSmall = CommonAdapter.getView(convertView,R.id.id_picSmall);
+        viewHolder.name = UtilWidget.getView(convertView, R.id.id_name);
+        viewHolder.description = UtilWidget.getView(convertView,R.id.id_description);
+        viewHolder.learner = UtilWidget.getView(convertView,R.id.id_learner);
+        viewHolder.picSmall = UtilWidget.getView(convertView,R.id.id_picSmall);
 
         return viewHolder;
     }

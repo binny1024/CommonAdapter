@@ -6,9 +6,9 @@ package com.adapter.smart.constants;
 
 public class ConstantUrl {
     public final static String MOCO_URL="http://www.imooc.com/api/teacher?type=4&num=30";
-    public final static String TESTJSON = "{\n" +
+    public final static String MUTIL_OBJECT = "{\n" +
             "\t\t\"status\": 1,\n" +
-            "\t\t\"daqta\": [\n" +
+            "\t\t\"data\": [\n" +
             "\t\t\t{\n" +
             "\t\t\t\t\"id\": 1,\n" +
             "\t\t\t\t\"name\": \"Tony老师聊shell——环境变量配置文件\",\n" +

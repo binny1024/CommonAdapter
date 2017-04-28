@@ -9,9 +9,9 @@ public interface IModelJsonData  {
     /*
     * 获取本地数据
     * */
-    void getLocalDataList( String dataSource, IDataResult iDataResult);
+    void getLocalDataList(int tag,String dataSource, IDataResult iDataResult);
     /*
     * 获取网络数据
     * */
-    void getNetDataList(String dataSource,IDataResult iDataResult);
+    void getNetDataList(int tag,String url,final IDataResult iDataResult);
 }

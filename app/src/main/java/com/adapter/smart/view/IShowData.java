@@ -1,6 +1,6 @@
 package com.adapter.smart.view;
 
-import com.adapter.smart.bean.BeanMutilObj;
+import com.adapter.smart.common.BaseBean;
 
 /**
  * Created by smart on 2017/4/27.
@@ -9,7 +9,7 @@ import com.adapter.smart.bean.BeanMutilObj;
 /*
 * view层接口
 * */
-public interface IShowMutilData {
-    void showList(BeanMutilObj beanMutilObj);
+public interface IShowData<T extends BaseBean> {
+    void showList(T bean);
     void showError(String msg);
 }

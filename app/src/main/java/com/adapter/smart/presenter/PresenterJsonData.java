@@ -1,11 +1,10 @@
 package com.adapter.smart.presenter;
 
-import com.adapter.smart.bean.BeanMutilObj;
 import com.adapter.smart.common.BaseBean;
 import com.adapter.smart.model.IDataResult;
 import com.adapter.smart.model.IModelJsonData;
 import com.adapter.smart.model.ModelJsonData;
-import com.adapter.smart.view.IShowMutilData;
+import com.adapter.smart.view.IShowData;
 
 /**
  * Created by smart on 2017/4/27.
@@ -15,36 +14,23 @@ import com.adapter.smart.view.IShowMutilData;
 * 中间层 负责 任务 路由
 * */
 public class PresenterJsonData {
-    private IShowMutilData mIShowData;//view层接口。成功获取数据后调用
+    private IShowData mIShowData;//view层接口。成功获取数据后调用
     private IModelJsonData mIModelJsonData;//model层接口。发起业务逻辑，读取数据等
 
-    public PresenterJsonData(IShowMutilData IShowData ) {
+    public PresenterJsonData(IShowData IShowData ) {
         mIShowData = IShowData;
         mIModelJsonData = new ModelJsonData ();
     }
 
-    public void getJsonLocal(String dataSource){
+    /*
+    * 从本地文档读取数据*/
+    public void getJsonLocal(final int tag,String dataSource){
 
-        mIModelJsonData.getLocalDataList(dataSource, new IDataResult() {
-
-            @Override
-            public void success(BaseBean baseBean) {
-                mIShowData.showList((BeanMutilObj) baseBean);
-            }
-
-            @Override
-            public void failure(String msg) {
-                mIShowData.showError(msg);
-            }
-        });
-    }
-    public void getJsonNet(String dataSource){
-
-        mIModelJsonData.getNetDataList(dataSource, new IDataResult() {
+        mIModelJsonData.getLocalDataList(tag,dataSource, new IDataResult() {
 
             @Override
             public void success(BaseBean baseBean) {
-                mIShowData.showList((BeanMutilObj) baseBean);
+                mIShowData.showList(baseBean);
             }
 
             @Override
@@ -54,4 +40,21 @@ public class PresenterJsonData {
         });
     }
 
+    /**
+     * @param tag 三种测试的数据类型
+     * @param dataSource 数据的url
+     */
+    public void getJsonNet(final int tag,String dataSource) {
+        mIModelJsonData.getNetDataList(tag, dataSource, new IDataResult() {
+            @Override
+            public void success(BaseBean bean) {
+                mIShowData.showList(bean);
+            }
+
+            @Override
+            public void failure(String msg) {
+                mIShowData.showError(msg);
+            }
+        });
+    }
 }

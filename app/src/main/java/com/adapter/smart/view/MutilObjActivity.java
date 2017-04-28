@@ -1,6 +1,5 @@
 package com.adapter.smart.view;
 
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.adapter.smart.R;
@@ -10,16 +9,18 @@ import com.adapter.smart.presenter.PresenterJsonData;
 import com.adapter.smart.viewholder.MutilObjViewHolder;
 import com.adapter.smart.viewholder.MutilObjViewHolderHelper;
 
-import static com.adapter.smart.constants.ConstantUrl.MOCO_URL;
+import static com.adapter.smart.constants.ConstantUrl.MUTIL_OBJECT;
+import static com.adapter.smart.constants.DataType.DATA_TYPE_MUTIL;
 
-public class MutilObjActivity extends BaseActivity{
+public class MutilObjActivity extends BaseActivity  implements IShowData<BeanMutilObj> {
+
 
 
     @Override
-    public void initView() {
-       mListView = (ListView) findViewById(R.id.id_listview);
-//        new PresenterJsonData(this).getJsonLocal(TESTJSON);//取本地字符串
-        new PresenterJsonData(this).getJsonNet(MOCO_URL);//取本地字符串
+    public void initPresenter() {
+//       mListView = UtilWidget.getView(this,R.id.id_listview);
+        new PresenterJsonData(this).getJsonLocal(DATA_TYPE_MUTIL,MUTIL_OBJECT);//取本地字符串
+//        new PresenterJsonData(this).getJsonNet(DATA_TYPE_MUTIL,MOCO_URL);//取本地字符串
     }
 
     @Override

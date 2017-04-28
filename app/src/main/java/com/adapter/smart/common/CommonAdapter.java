@@ -2,6 +2,7 @@ package com.adapter.smart.common;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         if (listSize != null) {
             this.listSize = listSize;
         }else {
-            listSize = 1;
+            this.listSize = 1;
         }
 
     }
@@ -64,7 +65,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
             mBaseViewHolder = (T)convertView.getTag();
         }
         mViewHolderCallback.bindView(mContext,mBaseBean,mBaseViewHolder,position);
-
+        Log.i("xxx", "getView: ");
         return convertView;
     }
 
@@ -80,9 +81,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
          */
        void bindView(Context context,BEAN beanList,BVH viewHolder,int position);
     }
-    public static <V extends View> V getView(View convertView,int itemViewId){
-        return (V) convertView.findViewById(itemViewId);
-    }
+
     /*
     * 你所写的viewholder要继承这个BaseViewHolder
     * */
