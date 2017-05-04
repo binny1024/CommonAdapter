@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanOneObj;
-import com.adapter.smart.common.CommonAdapter;
+import com.smart.holder_library.CommonAdapter;
 import com.adapter.smart.utils.UtilWidget;
 
 /**

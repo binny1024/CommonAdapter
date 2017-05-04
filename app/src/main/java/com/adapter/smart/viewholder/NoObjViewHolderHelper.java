@@ -7,8 +7,8 @@ import android.view.View;
 
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanNoObj;
-import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.utils.UtilWidget;
+import com.smart.holder_library.CommonAdapter;
 
 /**
  * Created by smart on 2017/4/26.

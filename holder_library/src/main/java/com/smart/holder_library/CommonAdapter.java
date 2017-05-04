@@ -1,8 +1,6 @@
-package com.adapter.smart.common;
+package com.smart.holder_library;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +8,17 @@ import android.widget.BaseAdapter;
 
 import java.io.Serializable;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 
 /**
  * Created by smart on 2017/4/24.
  */
 
-public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
+public class CommonAdapter<ViewHolder extends CommonAdapter.IBaseViewHolder>  extends BaseAdapter{
     private final int mItemViewLayout;//item布局文件
     protected Context mContext;
-    private T mBaseViewHolder;
+    private ViewHolder mBaseViewHolder;
     private ViewHolderCallback mViewHolderCallback;
     private BaseBean mBaseBean;
     private int listSize;
@@ -61,27 +61,26 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mItemViewLayout,parent,false);
-            mBaseViewHolder = (T) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
+            mBaseViewHolder = (ViewHolder) mViewHolderCallback.initViewHolder(mBaseViewHolder,convertView);
             convertView.setTag(mBaseViewHolder);
         }else {
-            mBaseViewHolder = (T)convertView.getTag();
+            mBaseViewHolder = (ViewHolder)convertView.getTag();
         }
         mViewHolderCallback.bindDataToView(mContext,mBaseBean,mBaseViewHolder,position);
-        Log.i("xxx", "getView: ");
         return convertView;
     }
 
 
-    public interface ViewHolderCallback<BVH extends IBaseViewHolder,BEAN extends BaseBean>{
+    public interface ViewHolderCallback<BaseViewHolder extends IBaseViewHolder,BaseBean>{
         /** 用于初始化ViewHolder
          * @param convertView
          */
-        IBaseViewHolder initViewHolder(@NonNull BVH viewHolder, @NonNull View convertView);
+        IBaseViewHolder initViewHolder(BaseViewHolder viewHolder, View convertView);
 
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindDataToView(Context context, BEAN beanDataList, BVH viewHolder, int position);
+       void bindDataToView(Context context, BaseBean beanDataList, BaseViewHolder viewHolder, int position);
     }
 
     /*

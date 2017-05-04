@@ -5,10 +5,10 @@ import android.widget.Toast;
 
 import com.adapter.smart.R;
 import com.adapter.smart.bean.BeanNoObj;
-import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.presenter.PresenterJsonData;
 import com.adapter.smart.viewholder.NoObjViewHolder;
 import com.adapter.smart.viewholder.NoObjViewHolderHelper;
+import com.smart.holder_library.CommonAdapter;
 
 import static com.adapter.smart.constants.ConstantUrl.NO_OBJECT;
 import static com.adapter.smart.constants.DataType.DATA_TYPE_NO;

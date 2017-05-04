@@ -1,6 +1,7 @@
 package com.adapter.smart.view;
 
-import com.adapter.smart.common.CommonAdapter;
+
+import com.smart.holder_library.CommonAdapter;
 
 /**
  * Created by smart on 2017/4/27.

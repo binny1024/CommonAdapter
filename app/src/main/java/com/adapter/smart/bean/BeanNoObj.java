@@ -1,6 +1,6 @@
 package com.adapter.smart.bean;
 
-import com.adapter.smart.common.CommonAdapter;
+import com.smart.holder_library.CommonAdapter;
 
 /**
  * Created by smart on 2017/4/26.
