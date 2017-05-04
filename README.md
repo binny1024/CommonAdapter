@@ -377,7 +377,7 @@
         public ImageView picSmall;
     }
 
-### 3、自定义 MocoViewHolderHelper
+### 3、自定义 MutilObjViewHolderHelper
 
 #####  继承自CommonAdapter.ViewHolderCallback< T，B >，来实现 viewholder的实例化和数据绑定。
 
@@ -405,7 +405,7 @@
 	* 实例化你的viewholder
 	* 将数据和viewholder的控件绑定
 	* */
-	public class MocoViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder,MocoBean> {
+	public class MutilObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<MocoViewHolder,MocoBean> {
 
 		@Override
 		public CommonAdapter.IBaseViewHolder initViewHolder(MocoViewHolder viewHolder, @NonNull View convertView) {
