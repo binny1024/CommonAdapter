@@ -28,11 +28,11 @@ public class NoObjViewHolderHelper implements CommonAdapter.ViewHolderCallback<N
     }
 
     @Override
-    public void bindView(Context context, BeanNoObj bean, NoObjViewHolder viewHolder, int position) {
-        viewHolder.name.setText("名字："+bean.getName());
-        viewHolder.age.setText("年龄："+bean.getAge());
-        Log.i("xxx", "bindView: "+bean.getAge());
-        viewHolder.status.setText("状态："+bean.getStatus());
-        viewHolder.msg.setText("结果："+bean.getMsg());
+    public void bindDataToView(Context context, BeanNoObj beanDataList, NoObjViewHolder viewHolder, int position) {
+        viewHolder.name.setText("名字："+ beanDataList.getName());
+        viewHolder.age.setText("年龄："+ beanDataList.getAge());
+        Log.i("xxx", "bindDataToView: "+ beanDataList.getAge());
+        viewHolder.status.setText("状态："+ beanDataList.getStatus());
+        viewHolder.msg.setText("结果："+ beanDataList.getMsg());
     }
 }

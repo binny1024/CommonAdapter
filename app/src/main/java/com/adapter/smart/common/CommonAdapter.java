@@ -66,7 +66,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         }else {
             mBaseViewHolder = (T)convertView.getTag();
         }
-        mViewHolderCallback.bindView(mContext,mBaseBean,mBaseViewHolder,position);
+        mViewHolderCallback.bindDataToView(mContext,mBaseBean,mBaseViewHolder,position);
         Log.i("xxx", "getView: ");
         return convertView;
     }
@@ -81,7 +81,7 @@ public class CommonAdapter<T extends CommonAdapter.IBaseViewHolder>  extends Bas
         /**用于设置 item中 的每一个控件
          * @param position
          */
-       void bindView(Context context,BEAN beanList,BVH viewHolder,int position);
+       void bindDataToView(Context context, BEAN beanDataList, BVH viewHolder, int position);
     }
 
     /*
