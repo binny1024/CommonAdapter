@@ -1,6 +1,6 @@
 package com.adapter.smart.presenter;
 
-import com.adapter.smart.common.BaseBean;
+import com.adapter.smart.common.CommonAdapter;
 import com.adapter.smart.model.IDataResult;
 import com.adapter.smart.model.IModelJsonData;
 import com.adapter.smart.model.ModelJsonData;
@@ -29,7 +29,7 @@ public class PresenterJsonData {
         mIModelJsonData.getLocalDataList(tag,dataSource, new IDataResult() {
 
             @Override
-            public void success(BaseBean baseBean) {
+            public void success( CommonAdapter.BaseBean  baseBean) {
                 mIShowData.showList(baseBean);
             }
 
@@ -47,7 +47,7 @@ public class PresenterJsonData {
     public void getJsonNet(final int tag,String dataSource) {
         mIModelJsonData.getNetDataList(tag, dataSource, new IDataResult() {
             @Override
-            public void success(BaseBean bean) {
+            public void success( CommonAdapter.BaseBean  bean) {
                 mIShowData.showList(bean);
             }
 

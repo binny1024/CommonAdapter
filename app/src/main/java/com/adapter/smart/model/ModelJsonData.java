@@ -77,6 +77,7 @@ public class ModelJsonData  implements IModelJsonData  {
             iDataResult.success(mBeanMutilObj);
         }
     }
+
     private void resultOne(String s, final IDataResult iDataResult) {
         Gson gson = new Gson();
         mBeanOneObj = gson.fromJson(s, new TypeToken<BeanOneObj>(){}.getType());
@@ -86,6 +87,7 @@ public class ModelJsonData  implements IModelJsonData  {
             iDataResult.success(mBeanOneObj);
         }
     }
+
     private void resultNo(String s, final IDataResult iDataResult) {
         Log.i("xxx", "resultNo: "+s);
         Gson gson = new Gson();
