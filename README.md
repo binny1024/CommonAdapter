@@ -3,6 +3,7 @@
 引用方式
 compile 'com.smart.holder_library:holder_library:1.0.0'
 
+最新地址 https://github.com/xubinbin1024/CommonAdapter-master
 ##测试数据
 ###### 来自慕课网的一个接口,不想去请求网络的话，直接把下面的作为作为字符串使用;
 ###### 示例中两种方式都给出了，注释了网络请求数据的代码，使用的本地字符串。其实是一样的。
