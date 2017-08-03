@@ -488,3 +488,6 @@ compile 'com.smart.holder_library:holder_library:1.0.0'
 
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/list.png)
 ![](https://github.com/xubinbin1024/CommonAdapter/blob/master/img/grid.png)
+
+##### QQ：交流群 ：192268854
+![](https://github.com/Xbean1024/XHttp/blob/master/gif/QQ.JPG)
